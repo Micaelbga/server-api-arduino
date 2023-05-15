@@ -3,8 +3,8 @@ const router = express.Router();
 const UsuarioService = require("../Services/UsuarioService");
 
 const routes = [
-    router.get('/api/usuario/getusuarios',(req,res)=>{
-        return UsuarioService.getUsuario(req,res);
+    router.post('/api/usuario/getusuario',(req,res)=>{
+        return UsuarioService.getUsuarioIdByEmail(req,res);
     }),
 
     router.put('/api/usuario/updateusuario',(req,res)=>{

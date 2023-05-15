@@ -3,12 +3,18 @@ const db = require("../configDb");
 class MovimentacaoService{
 
         static getMovimentacao(req,res){
-            let response;
-            db.query("SELECT * FROM movimentacao",(err, result)=>{
-                response = res.status(200).json(result);
-            });
-            db.end();
-            return response;
+            
+            db.query(
+                "SELECT cartao.id, movimentacao.data_movimentacao, usuario.nome FROM movimentacao INNER JOIN cartao ON movimentacao.cartao_id = cartao.id LEFT JOIN usuario ON cartao.usuario_id = usuario.id",
+                (err, result)=>{
+                    if(err){
+                        res.send(err).status(500)
+                    }else{
+                        res.json(result).status(200);
+                    }
+                }
+            );
+            
         }
 
         static getMovimentacaoByCartaoId(req,res){

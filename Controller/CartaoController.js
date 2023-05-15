@@ -13,7 +13,11 @@ const routes = [
 
     router.post("/api/cartao/postcartao",(req,res)=>{
         return CartaoService.postCartao(req,res);
-    })
+    }),
+
+    router.put("/api/cartao/updatecartao",(req,res)=>{
+        return CartaoService.updateCartao(req,res);
+    }),
 ]
 
 module.exports = routes;

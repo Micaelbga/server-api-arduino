@@ -3,11 +3,12 @@ const db = require("../configDb");
 class CartaoService{
 
     static getCartoes(req,res){
-        let response;
-        db.query("SELECT * FROM cartao",(err,result)=>{
-            response = res.status(200).json(result);
-        });
-        return response;
+        db.query(
+            "SELECT cartao.id, usuario.nome FROM cartao LEFT JOIN usuario ON cartao.usuario_id = usuario.id",
+            (err,result)=>{
+                res.send(result)
+            }
+        );
 
     }
 
@@ -42,6 +43,20 @@ class CartaoService{
             }
         });
         return response;
+    }
+
+    static updateCartao(req,res){
+        db.query("UPDATE cartao SET usuario_id = ? WHERE id = (?)",
+        [req.body.userId,req.body.id],
+        (err,result)=>{
+            if(err){
+                throw err
+                res.send(err).status(500);
+            }else{
+                console.log(result);
+                res.send(result).status(200);
+            }
+        })
     }
 }
 
