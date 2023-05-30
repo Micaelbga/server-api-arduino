@@ -44,6 +44,17 @@ class MovimentacaoService{
             db.end();
             return result;
         }
+
+        static deleteMovimentacao(req,res){
+            let cartaoId = Object.keys(req.body)[0]
+            db.query("DELETE FROM movimentacao where cartao_id = (?)",[cartaoId],(err,result)=>{
+                if(err){
+                    res.status(500).json(err);
+                }else{
+                    res.status(200).json(result);
+                }
+            });
+        }
 }
 
 module.exports = MovimentacaoService;

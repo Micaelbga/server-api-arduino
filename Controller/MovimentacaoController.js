@@ -14,6 +14,9 @@ const routes = [
 
     router.post("/api/movimentacao/postmovimentacao",(req,res)=>{
         return MovimentacaoService.postMovimentacao(req,res);
+    }),
+    router.post("/api/movimentacao/deletemovimentacao",(req,res)=>{
+        return MovimentacaoService.deleteMovimentacao(req,res);
     })
 ]
 

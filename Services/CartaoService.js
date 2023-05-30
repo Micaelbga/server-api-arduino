@@ -53,10 +53,20 @@ class CartaoService{
                 throw err
                 res.send(err).status(500);
             }else{
-                console.log(result);
                 res.send(result).status(200);
             }
         })
+    }
+
+    static deleteCartao(req,res){
+        let cartaoId = Object.keys(req.body)[0]
+        db.query("DELETE FROM cartao where id = (?)",[cartaoId],(err,result)=>{
+            if(err){
+                res.status(500).json(err);
+            }else{
+                res.status(200).json(result)
+            }
+        });
     }
 }
 

@@ -18,6 +18,10 @@ const routes = [
     router.put("/api/cartao/updatecartao",(req,res)=>{
         return CartaoService.updateCartao(req,res);
     }),
+
+    router.post("/api/cartao/deletecartao",(req,res)=>{
+        return CartaoService.deleteCartao(req,res);
+    }),
 ]
 
 module.exports = routes;
