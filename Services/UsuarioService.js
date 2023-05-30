@@ -34,12 +34,11 @@ class UsuarioService{
 
         db.query("UPDATE usuario set nome = (?), matricula = (?) where cartao_id = (?)",[req.body.nome,req.body.matricula,req.body.cartaoId],(err,result)=>{
             if(err){
-                throw err;
+                response = res.status(500).json(err);
             }else{
                 response = res.status(200).json(result);
             }
         });
-        db.end();
 
         return response;
     }

@@ -21,7 +21,7 @@ class CartaoService{
                 throw err
             }else{
                 if(result.length == 0){
-                    response = res.status(404).json(result);   
+                    response = res.status(404).json(err);   
                 }else{
                     response = res.status(200).json(result);
                 }
@@ -37,7 +37,7 @@ class CartaoService{
 
         db.query("INSERT INTO cartao (id,data_cadastro) VALUES (?,?)",[nfcCod,date],(err,result)=>{
             if(err){
-                throw err
+                response = res.status(500).json(err);
             }else{
                 response = res.status(200).json(result);
             }
@@ -50,7 +50,6 @@ class CartaoService{
         [req.body.userId,req.body.id],
         (err,result)=>{
             if(err){
-                throw err
                 res.send(err).status(500);
             }else{
                 res.send(result).status(200);
